@@ -1,6 +1,7 @@
 import express, { Application } from "express";
 import DB from "./config/db.config";
 import UserRouter from "./user/routes/user.router";
+import { Validator } from "./utils/validator";
 
 
 
@@ -12,7 +13,7 @@ class App {
 
     constructor() {
         this.app = express();
-        this.port = Number(process.env.PORT);
+        this.port = Validator.getPort();
         if(isNaN(this.port)) throw new Error("PORT, no esta definido correctamente");
         
         this.uri = process.env.URI as string;
